@@ -1,0 +1,50 @@
+version: "3"
+
+services:
+  app-no-balancer:
+    image: node:lts
+    container_name: app-no-balancer
+    build: ./
+    tty: true
+    stdin_open: true
+    command: bash
+    restart: always
+    working_dir: /app
+    volumes:
+      - ./:/app
+    ports:
+      - 3030:3001
+    environment:
+      - APP_PORT=3030
+      - JWT_SECRET=jwt_secret
+      - DB_PASS=password
+      - DB_HOST=db
+      - DB_PORT=3306
+    depends_on:
+      db_mysql:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3030"] # Caso utilize outra porta interna para o back, altere ela aqui também
+      timeout: 10s
+      retries: 5
+
+  db_mysql:
+    image: mysql:8.0.23
+    restart: always
+    container_name: mysql_db
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+    ports:
+      - 3306:3306
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"] # Deve aguardar o banco ficar operacional
+      timeout: 10s
+      retries: 5
+    cap_add:
+      - SYS_NICE # Deve omitir alertas menores
+
+networks:
+  # Rede padrão, criada automaticamente
+  default:
+    # Dá um nome específico à rede padrão
+    name: project_mysql

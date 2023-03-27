@@ -2,7 +2,7 @@ version: "3"
 
 services:
   app-no-balancer:
-    image: node:lts
+    image: docker.io/node:lts
     container_name: app-no-balancer
     build: ./
     tty: true
@@ -18,18 +18,19 @@ services:
       - APP_PORT=3030
       - JWT_SECRET=jwt_secret
       - DB_PASS=password
-      - DB_HOST=db
+      - DB_HOST=db_mysql
       - DB_PORT=3306
+      - ENVIRONMENT='dev'
     depends_on:
       db_mysql:
         condition: service_healthy
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3030"] # Caso utilize outra porta interna para o back, altere ela aqui também
+      test: [ "CMD", "curl", "-f", "http://localhost:3030" ]
       timeout: 10s
       retries: 5
 
   db_mysql:
-    image: mysql:8.0.23
+    image: docker.io/mysql:8.0.23
     restart: always
     container_name: mysql_db
     environment:
@@ -37,7 +38,7 @@ services:
     ports:
       - 3306:3306
     healthcheck:
-      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"] # Deve aguardar o banco ficar operacional
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
       timeout: 10s
       retries: 5
     cap_add:

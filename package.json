@@ -4,6 +4,7 @@
   "description": "Teste da empresa X",
   "main": "src/app/api/server.js",
   "scripts": {
+    "build": "/bin/sh tsc_eval.sh",
     "start": "tsc && node ./swagger.js && node ./dist/src/app/server.js",
     "dev": "tsnd --respawn --ignore-watch node_modules src/app/server.ts",
     "balancer": "cd ./src/docker/loadBalancer/  && docker-compose up -d ",

@@ -8,11 +8,12 @@
     "sourceMap": true,
     "rootDir": ".",
     "outDir": "./dist",
-    "allowJs": true
+    "allowJs": true,
+    "lib": ["DOM"],
   },
   "include": [
     "src/**/*.ts",
-    "src/tests/**/*.ts",
+    "src/tests/**/*.ts", "src/app/api/Database/Config/database copy.js",
   ],
   "exclude": [
     "node_modules",

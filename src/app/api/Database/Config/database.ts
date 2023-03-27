@@ -1,13 +1,12 @@
-import 'dotenv/config';
-
 import {Options} from 'sequelize';
+import {db} from '../../Configs/dotenv';
 
 const config: Options = {
-  username: process.env.DB_USER || 'root',
-  password: process.env.DB_PASS || '123456',
-  database: process.env.DB_NAME,
-  host: process.env.DB_HOST || 'localhost',
-  port: Number(process.env.DB_PORT) || 3002,
+  username: db.DB_USER,
+  password: db.DB_PASS,
+  database: db.DB_NAME,
+  host: db.DB_HOST,
+  port: db.DB_PORT,
   dialect: 'mysql',
   dialectOptions: {
     timezone: 'Z',

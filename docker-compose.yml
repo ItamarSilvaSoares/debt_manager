@@ -20,7 +20,7 @@ services:
       - DB_PASS=password
       - DB_HOST=db_mysql
       - DB_PORT=3306
-      - ENVIRONMENT='dev'
+      - NODE_ENV='development'
     depends_on:
       db_mysql:
         condition: service_healthy

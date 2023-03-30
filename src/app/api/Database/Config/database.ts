@@ -1,5 +1,5 @@
 import {Options} from 'sequelize';
-import {db} from '../../Configs/dotenv';
+import {db} from '../../Environments/dotenv';
 
 const config: Options = {
   username: db.DB_USER,

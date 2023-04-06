@@ -5,3 +5,8 @@ export enum Suffix {
   production = '-prod',
   prod = '-prod',
 }
+
+export const ErrosUserMensagens = {
+  conflictUser: 'User already registered',
+  notFoundUser: 'User not found',
+};

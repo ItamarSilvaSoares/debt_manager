@@ -14,3 +14,8 @@ export const ErrosUserMensagens = {
 export const ErrosJwtMensagens = {
   TokenNotFound: 'TokenNotFound',
 };
+
+export const zod = {
+  email: 'Invalid email address',
+  min: 'Must be 6 or more characters long',
+};

@@ -2,8 +2,9 @@ import {Request, Response} from 'express';
 import IServiceUser from '../Interfaces/IService/IServiceUser';
 import User from '../Database/Models/User';
 import {StatusCodes} from 'http-status-codes';
+import userService from '../Services/user.service';
 
-export default abstract class UserController {
+class UserController {
   protected service: IServiceUser<User>;
   constructor(service: IServiceUser<User>) {
     this.service = service;
@@ -19,3 +20,6 @@ export default abstract class UserController {
   //   return res.status(StatusCodes.OK).json(result);
   // }
 }
+
+export default new UserController(userService);
+export {UserController};

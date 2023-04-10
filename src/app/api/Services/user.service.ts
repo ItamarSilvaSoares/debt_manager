@@ -6,8 +6,9 @@ import CustomError from '../Errors/CustomError';
 import {ErrosUserMensagens} from '../Utils/Constants';
 import {StatusCodes} from 'http-status-codes';
 import IUpdateUser from '../Interfaces/IUpdate/IUpdateUser';
+import IServiceUser from '../Interfaces/IService/IServiceUser';
 
-class UserService {
+class UserService implements IServiceUser<User> {
   protected model: ModelStatic<User>;
 
   constructor(model: ModelStatic<User>) {

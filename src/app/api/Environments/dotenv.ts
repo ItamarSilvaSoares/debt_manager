@@ -10,3 +10,7 @@ export const db = {
   DB_HOST: process.env.DB_HOST || 'localhost',
   DB_PORT: Number(process.env.DB_PORT) || 3306,
 };
+
+export const jwt = {
+  secret: process.env.JWT_SECRET || 'jwt_secret',
+};

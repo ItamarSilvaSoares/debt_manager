@@ -10,3 +10,7 @@ export const ErrosUserMensagens = {
   conflictUser: 'User already registered',
   notFoundUser: 'User not found',
 };
+
+export const ErrosJwtMensagens = {
+  TokenNotFound: 'TokenNotFound',
+};

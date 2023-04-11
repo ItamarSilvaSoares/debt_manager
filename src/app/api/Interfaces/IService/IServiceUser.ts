@@ -1,5 +1,4 @@
 import ICreateUser from '../ICreate/ICreateUser';
-import IUpdateUser from '../IUpdate/IUpdateUser';
 
 /**
  * Interface responsável por regras de serviços User
@@ -34,7 +33,10 @@ export default interface IServiceUser<M> {
         cell: 00000000000;
       }
    */
-  update(updateUser: IUpdateUser, userId: number): Promise<M | null>;
+  update(
+    updateUser: Partial<Omit<ICreateUser, 'id'>>,
+    userId: number
+  ): Promise<M | null>;
 
   /**
    * Implemente esse método para deletar um

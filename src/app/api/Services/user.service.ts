@@ -5,7 +5,6 @@ import Bcryptjs from '../helpers/Bcryptjs';
 import CustomError from '../Errors/CustomError';
 import {ErrosUserMensagens} from '../Utils/Constants';
 import {StatusCodes} from 'http-status-codes';
-import IUpdateUser from '../Interfaces/IUpdate/IUpdateUser';
 import IServiceUser from '../Interfaces/IService/IServiceUser';
 
 class UserService implements IServiceUser<User> {
@@ -45,7 +44,10 @@ class UserService implements IServiceUser<User> {
     return this.findUnique(newUser.email, 'email');
   }
 
-  async update(updateUser: IUpdateUser, userId: number): Promise<User | null> {
+  async update(
+    updateUser: Partial<Omit<ICreateUser, 'id'>>,
+    userId: number
+  ): Promise<User | null> {
     const user = await this.findUnique(userId, 'id');
     if (!user) {
       throw new CustomError(

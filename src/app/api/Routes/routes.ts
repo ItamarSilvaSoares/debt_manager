@@ -7,7 +7,7 @@ const routers = express.Router();
 
 routers.get('/', (_req, res) => res.status(200).json({message: 'OK'}));
 
-routers.use('/user', userRouter);
+routers.use(userRouter);
 
 routers.use('/doc', docRouter);
 

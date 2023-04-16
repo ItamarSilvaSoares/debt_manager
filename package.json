@@ -6,7 +6,7 @@
   "scripts": {
     "build": "/bin/sh tsc_eval.sh",
     "start": "tsc && node ./swagger.js && node ./dist/src/app/server.js",
-    "dev": "tsnd --respawn --ignore-watch node_modules src/app/server.ts",
+    "dev": "tsc && node ./swagger.js && tsnd --respawn --rs --ignore-watch node_modules src/app/server.ts",
     "balancer": "cd ./src/docker/loadBalancer/  && docker-compose up -d ",
     "create": "docker-compose up -d ",
     "test": "mocha -r ts-node/register src/tests/**/*.test.ts --exit -t 60000",
@@ -15,7 +15,8 @@
     "clean": "gts clean",
     "compile": "tsc",
     "fix": "gts fix",
-    "posttest": "npm run lint"
+    "posttest": "npm run lint",
+    "swagger": "node swagger.js"
   },
   "keywords": [],
   "author": "Itamar da Silva Soares",
@@ -30,7 +31,6 @@
     "jsonwebtoken": "^9.0.0",
     "mysql2": "^3.1.2",
     "sequelize": "^6.28.0",
-    "swagger-autogen": "^2.23.1",
     "swagger-ui-express": "^4.6.0",
     "type-fest": "^3.8.0",
     "zod": "^3.20.6"

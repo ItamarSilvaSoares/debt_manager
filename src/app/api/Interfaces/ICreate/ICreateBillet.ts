@@ -3,7 +3,7 @@
  * boleto
 
  * @example
-     {
+      {
         id: 1;
         debtId: 3;
         scannableLines: '34191790010104351004791020150008493170026000';

@@ -1,0 +1,153 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "API Debt Manger",
+    "description": "Esta documentação é destinada ao projeto Debt Manger"
+  },
+  "host": "localhost:3001",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "User",
+      "description": "Endpoints"
+    }
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/user": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "description": "Endpoint para cadastra um usuário.",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Informações do usuário.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddUser"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/User"
+            },
+            "description": "User Create"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/BadRequest"
+            },
+            "description": "Bad Request"
+          },
+          "409": {
+            "schema": {
+              "$ref": "#/definitions/ConflictUser"
+            },
+            "description": "Conflict User"
+          }
+        }
+      },
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "example": 1
+        },
+        "username": {
+          "type": "string",
+          "example": "John Doe"
+        },
+        "email": {
+          "type": "string",
+          "example": "John@email.com"
+        },
+        "cell": {
+          "type": "string",
+          "example": "18991234567"
+        }
+      }
+    },
+    "AddUser": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string",
+          "example": "John Doe"
+        },
+        "email": {
+          "type": "string",
+          "example": "John@email.com"
+        },
+        "cell": {
+          "type": "string",
+          "example": "18991234567"
+        },
+        "password": {
+          "type": "string",
+          "example": "password"
+        }
+      },
+      "required": [
+        "username",
+        "email",
+        "cell",
+        "password"
+      ]
+    },
+    "ConflictUser": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "example": "User already registered"
+        }
+      }
+    },
+    "NotFoundUser": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "example": "User not found"
+        }
+      }
+    },
+    "BadRequest": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "example": "Something is wrong in the Body Request"
+        }
+      }
+    }
+  }
+}

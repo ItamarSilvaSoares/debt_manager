@@ -1,11 +1,11 @@
 /**
  * Interface responsável por definir um padrão para criar um novo debito
  * @example
-     {
+      {
         id: 1;
         userId: 1;
         type: 2;
-        value: 150;
+        value: 150.00;
         description: String;
         dueDate: 2023-02-23;
         payed: True;

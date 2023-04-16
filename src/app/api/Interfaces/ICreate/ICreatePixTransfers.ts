@@ -3,7 +3,7 @@
  * transferência ou tipo pix
 
  * @example
-     {
+      {
         id: 1;
         debtId: 2;
         to: 'user_two';

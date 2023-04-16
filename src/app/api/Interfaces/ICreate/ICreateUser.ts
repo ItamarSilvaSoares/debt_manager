@@ -1,7 +1,7 @@
 /**
  * Interface responsável por definir um padrão para o usuário
  * @example
-     {
+      {
         id: 1;
         username: 'user_one';
         email: 'user@user';

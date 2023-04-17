@@ -1,3 +1,10 @@
 {
-  "extends": "./node_modules/gts/"
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  "extends": [
+  "./node_modules/gts/", 
+  "eslint:recommended",
+  "plugin:@typescript-eslint/recommended"
+  ]
 }

@@ -11,7 +11,7 @@ class Debt extends Model {
   declare value: number;
   declare description: string;
   declare dueDate: Date;
-  declare payed: Boolean;
+  declare payed: boolean;
 }
 
 Debt.init(

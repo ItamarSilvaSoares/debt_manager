@@ -13,7 +13,7 @@
  * @augments password - senha do usuário
  */
 export default interface ICreateUser {
-  id?: Number;
+  id?: number;
   username: string;
   email: string;
   cell: string;

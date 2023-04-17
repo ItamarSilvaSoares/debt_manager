@@ -18,11 +18,11 @@
   @argument payed - boolean to verificar se o debito foi pago
  */
 export default interface ICreateDebt {
-  id?: Number;
-  userId: Number;
-  type: Number;
-  value: Number;
-  description: String;
+  id?: number;
+  userId: number;
+  type: number;
+  value: number;
+  description: string;
   dueDate: Date;
-  payed?: Boolean;
+  payed?: boolean;
 }

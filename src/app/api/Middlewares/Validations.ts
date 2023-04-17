@@ -6,7 +6,7 @@ export default class validations {
     req: Request,
     _res: Response,
     next: NextFunction
-  ) {
+  ): void {
     userSchema.parse(req.body);
     next();
   }

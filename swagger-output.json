@@ -5,7 +5,7 @@
     "title": "API Debt Manger",
     "description": "Esta documentação é destinada ao projeto Debt Manger"
   },
-  "host": "localhost:3001",
+  "host": "localhost:3030",
   "basePath": "/",
   "tags": [
     {
@@ -62,8 +62,11 @@
           }
         }
       },
-      "get": {
-        "description": "",
+      "patch": {
+        "tags": [
+          "User"
+        ],
+        "description": "Endpoint para atualizar um usuário.",
         "parameters": [],
         "responses": {
           "200": {

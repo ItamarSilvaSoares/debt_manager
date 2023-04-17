@@ -14,7 +14,7 @@
  * @augments scannableLines - linha que corresponde a linha digital do boleto
  */
 export default interface ICreateBillet {
-  id?: Number;
-  debtId: Number;
-  scannableLines: String;
+  id?: number;
+  debtId: number;
+  scannableLines: string;
 }

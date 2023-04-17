@@ -12,19 +12,19 @@ import {ErrosJwtMensagens} from '../Utils/Constants';
 import {jwt} from '../Environments/dotenv';
 
 /**
- * Classe abstrata responsável por contrato JWT de segurança
+ * Classe responsável por contrato JWT de segurança
  * @param secret
  * @param jwtConfig
  * @link https://www.npmjs.com/package/jsonwebtoken
  */
-export default abstract class AContractJWT {
-  private static secret: Secret;
-  private static jwtConfig: SignOptions;
+class AContractJWT {
+  private secret: Secret;
+  private jwtConfig: SignOptions;
 
   constructor() {
-    AContractJWT.secret = jwt.secret;
-    AContractJWT.jwtConfig = {
-      expiresIn: '2d',
+    this.secret = jwt.secret;
+    this.jwtConfig = {
+      expiresIn: '1d',
       algorithm: 'HS256',
     };
   }
@@ -34,7 +34,7 @@ export default abstract class AContractJWT {
    * @param payload - Dados do payload
    * @returns Token no formato String
    */
-  static gerarToken(payload: JwtPayload): string {
+  gerarToken(payload: JwtPayload): string {
     return sign({...payload}, this.secret, this.jwtConfig);
   }
 
@@ -45,7 +45,7 @@ export default abstract class AContractJWT {
    * @throws JsonWebTokenError caso token não seja valido
    * @throws TokenNotFoundError caso não seja passado token
    */
-  static async verificarToken(token: string | undefined): Promise<JwtPayload> {
+  async verificarToken(token: string | undefined): Promise<JwtPayload> {
     if (!token)
       throw new CustomError(
         StatusCodes.UNAUTHORIZED,
@@ -60,3 +60,5 @@ export default abstract class AContractJWT {
     }
   }
 }
+
+export default new AContractJWT();

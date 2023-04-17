@@ -14,7 +14,7 @@
  * @augments to - para quem recebeu a transação
  */
 export default interface ICreatePixTransfers {
-  id?: Number;
-  debtId: Number;
-  to: String;
+  id?: number;
+  debtId: number;
+  to: string;
 }

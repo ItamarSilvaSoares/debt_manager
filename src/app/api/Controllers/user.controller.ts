@@ -6,9 +6,11 @@ import userService from '../Services/user.service';
 
 class UserController {
   protected service: IServiceUser<User>;
+
   constructor(service: IServiceUser<User>) {
     this.service = service;
   }
+
   async create(req: Request, res: Response): Promise<Response> {
     const result = await this.service.create(req.body);
     return res.status(StatusCodes.CREATED).json(result);

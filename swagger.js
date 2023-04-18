@@ -15,9 +15,20 @@ const doc = {
     {
         "name": "User",
         "description": "Endpoints"
+    },
+    {
+      "name": "Login",
+      "description": "Endpoints"
     }
 ],
   definitions: {
+    LoginUser: {
+      $email: "John@email.com",
+      $password: "password"
+    },
+    Token:{
+      token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJKb2huIERvZSIsImVtYWlsIjoiSm9obiBEb2Ui"
+    },
     User: {
       id: 1,
       username: "John Doe",
@@ -39,6 +50,9 @@ const doc = {
     BadRequest: {
       message: "Something is wrong in the Body Request"
   },
+    Unauthorized: {
+      message: "Email or password invalid"
+    }
   },
     
 
@@ -47,6 +61,7 @@ const doc = {
 const outputFile = './swagger-output.json'
 const endpointsFiles = [
   './dist/src/app/api/Routes/userRouter.js',
+  './dist/src/app/api/Routes/loginRouter.js',
 ]
 
 swaggerAutogen(outputFile, endpointsFiles, doc).then(async () => {

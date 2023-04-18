@@ -5,11 +5,15 @@
     "title": "API Debt Manger",
     "description": "Esta documentação é destinada ao projeto Debt Manger"
   },
-  "host": "localhost:3030",
+  "host": "localhost:3001",
   "basePath": "/",
   "tags": [
     {
       "name": "User",
+      "description": "Endpoints"
+    },
+    {
+      "name": "Login",
       "description": "Endpoints"
     }
   ],
@@ -74,9 +78,74 @@
           }
         }
       }
+    },
+    "/login": {
+      "post": {
+        "tags": [
+          "Login"
+        ],
+        "description": "Endpoint para o login de um usuário.",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Informações do usuário para o login.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LoginUser"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Token"
+            },
+            "description": "User Create"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/BadRequest"
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "schema": {
+              "$ref": "#/definitions/Unauthorized"
+            },
+            "description": "Unauthorized"
+          }
+        }
+      }
     }
   },
   "definitions": {
+    "LoginUser": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "example": "John@email.com"
+        },
+        "password": {
+          "type": "string",
+          "example": "password"
+        }
+      },
+      "required": [
+        "email",
+        "password"
+      ]
+    },
+    "Token": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string",
+          "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJKb2huIERvZSIsImVtYWlsIjoiSm9obiBEb2Ui"
+        }
+      }
+    },
     "User": {
       "type": "object",
       "properties": {
@@ -149,6 +218,15 @@
         "message": {
           "type": "string",
           "example": "Something is wrong in the Body Request"
+        }
+      }
+    },
+    "Unauthorized": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "example": "Username or password invalid"
         }
       }
     }

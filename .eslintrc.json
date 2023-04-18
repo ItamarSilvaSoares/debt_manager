@@ -6,5 +6,8 @@
   "./node_modules/gts/", 
   "eslint:recommended",
   "plugin:@typescript-eslint/recommended"
-  ]
+  ],
+  "rules": {
+    "node/no-unpublished-import": "off"
+}
 }

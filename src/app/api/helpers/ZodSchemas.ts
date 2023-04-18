@@ -7,3 +7,8 @@ export const userSchema = z.object({
   cell: z.string().min(11),
   password: z.string().min(6, {message: zod.min}),
 });
+
+export const loginSchema = z.object({
+  email: z.string().email({message: zod.email}),
+  password: z.string().min(6, {message: zod.min}),
+});

@@ -6,5 +6,6 @@ tsconfig.json
 coverage
 jest.config.js
 nyc.config.js
-src/tests/
+# src/tests/integration
+# src/tests/unity
 swagger.js

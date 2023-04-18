@@ -1,6 +1,8 @@
 # Debit manager
 
+## Contexto
 Uma simples api para gerenciamento de dividas
+
 
 ## Instalação
 

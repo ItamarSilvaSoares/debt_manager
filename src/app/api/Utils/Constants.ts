@@ -21,5 +21,5 @@ export const zod = {
 };
 
 export const ErrosLogin = {
-  erroLogin: 'Username or password invalid',
+  erroLogin: 'Email or password invalid',
 };

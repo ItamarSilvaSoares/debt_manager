@@ -1,6 +1,8 @@
 {
   "extends": "./node_modules/gts/tsconfig-google.json",
   "compilerOptions": {
+    "useUnknownInCatchVariables": false,
+    "skipLibCheck": true,
     "resolveJsonModule": true,
     "strict": true,
     "module": "NodeNext",
@@ -16,10 +18,9 @@
   },
   "include": [
     "src/**/*.ts",
-    "src/tests/**/*.ts",
-    "src/app/api/Database/Config/database copy.js",
   ],
   "exclude": [
     "node_modules",
+    "src/tests"
   ]
 }

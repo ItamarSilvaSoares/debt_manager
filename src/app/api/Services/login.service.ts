@@ -1,11 +1,13 @@
 import {ModelStatic} from 'sequelize';
-import User from '../Database/Models/User';
-import ILogin from '../Interfaces/ILogin';
-import CustomError from '../Errors/CustomError';
 import {StatusCodes} from 'http-status-codes';
-import {ErrosLogin} from '../Utils/Constants';
-import Bcryptjs from '../helpers/Bcryptjs';
+
 import AContractJWT from '../helpers/Jwt';
+import Bcryptjs from '../helpers/Bcryptjs';
+import CustomError from '../Errors/CustomError';
+import ILogin from '../Interfaces/ILogin';
+import User from '../Database/Models/User';
+
+import {ErrosLogin} from '../Utils/Constants';
 
 class LoginService {
   protected model: ModelStatic<User> = User;
@@ -23,7 +25,7 @@ class LoginService {
 
     const {password: _, ...data} = user;
 
-    return AContractJWT.gerarToken(data);
+    return AContractJWT.createToken(data);
   }
 
   async findOne(email: string) {

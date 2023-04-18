@@ -26,6 +26,7 @@ class AContractJWT {
     this.jwtConfig = {
       expiresIn: '1d',
       algorithm: 'HS256',
+      noTimestamp: true,
     };
   }
 
@@ -34,7 +35,7 @@ class AContractJWT {
    * @param payload - Dados do payload
    * @returns Token no formato String
    */
-  gerarToken(payload: JwtPayload): string {
+  createToken(payload: JwtPayload): string {
     return sign({...payload}, this.secret, this.jwtConfig);
   }
 
@@ -45,7 +46,7 @@ class AContractJWT {
    * @throws JsonWebTokenError caso token não seja valido
    * @throws TokenNotFoundError caso não seja passado token
    */
-  async verificarToken(token: string | undefined): Promise<JwtPayload> {
+  async verifyToken(token: string | undefined): Promise<JwtPayload> {
     if (!token)
       throw new CustomError(
         StatusCodes.UNAUTHORIZED,

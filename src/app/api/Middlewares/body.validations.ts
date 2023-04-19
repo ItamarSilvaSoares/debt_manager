@@ -1,7 +1,7 @@
 import {NextFunction, Request, Response} from 'express';
 import {loginSchema, userSchema} from '../helpers/ZodSchemas';
 
-export default class validations {
+export default class BodyValidationsClass {
   static CreateRequestUserBody(
     req: Request,
     _res: Response,

@@ -226,7 +226,7 @@
       "properties": {
         "message": {
           "type": "string",
-          "example": "Username or password invalid"
+          "example": "Email or password invalid"
         }
       }
     }

@@ -48,21 +48,31 @@ class UserService implements IServiceUser<User> {
     updateUser: Partial<Omit<ICreateUser, 'id'>>,
     userId: number
   ): Promise<User | null> {
-    const user = await this.findUnique(userId, 'id');
-    if (!user) {
-      throw new CustomError(
-        StatusCodes.NOT_FOUND,
-        ErrosUserMensagens.notFoundUser,
-        'Invalid User'
-      );
+    if ('email' in updateUser) {
+      const user = await this.findUnique(userId, 'email');
+      if (user) {
+        throw new CustomError(
+          StatusCodes.CONFLICT,
+          ErrosUserMensagens.conflictEmail,
+          'Invalid Email'
+        );
+      }
     }
-    await this.model.update({...updateUser}, {where: {id: userId}});
+
+    if ('password' in updateUser) {
+      const password = Bcryptjs.getHash(updateUser.password as string);
+      updateUser = {...updateUser, password};
+    }
+
+    const a = await this.model.update({...updateUser}, {where: {id: userId}});
+
+    console.log(a);
 
     return this.findUnique(userId, 'id');
   }
 
   async delete(id: number): Promise<void> {
-    this.model.destroy({where: {id}});
+    await this.model.destroy({where: {id}});
   }
 }
 

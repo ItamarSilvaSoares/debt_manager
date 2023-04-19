@@ -1,7 +1,7 @@
 import {ModelStatic} from 'sequelize';
 import {StatusCodes} from 'http-status-codes';
 
-import AContractJWT from '../helpers/Jwt';
+import Jwt from '../helpers/Jwt';
 import Bcryptjs from '../helpers/Bcryptjs';
 import CustomError from '../Errors/CustomError';
 import ILogin from '../Interfaces/ILogin';
@@ -25,7 +25,7 @@ class LoginService {
 
     const {password: _, ...data} = user;
 
-    return AContractJWT.createToken(data);
+    return Jwt.createToken(data);
   }
 
   async findOne(email: string) {

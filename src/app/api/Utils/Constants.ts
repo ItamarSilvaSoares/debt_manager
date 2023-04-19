@@ -8,6 +8,7 @@ export enum Suffix {
 
 export const ErrosUserMensagens = {
   conflictUser: 'User already registered',
+  conflictEmail: 'Invalid Email',
   notFoundUser: 'User not found',
 };
 

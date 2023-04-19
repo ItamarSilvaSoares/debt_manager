@@ -1,25 +1,27 @@
 import {expect} from 'chai';
 import {describe, it} from 'mocha';
 import Sinon from 'sinon';
+import bcrypt from 'bcryptjs';
 
 import LoginService from '../../../app/api/Services/login.service';
 
 import mock from '../../Mocks/login.mock';
 
-import AContractJWT from '../../../app/api/helpers/Jwt';
+import Jwt from '../../../app/api/helpers/Jwt';
 import User from '../../../app/api/Database/Models/User';
 
-describe('Test the service Login', () => {
+describe('Test Login service', () => {
   afterEach(() => {
     Sinon.restore();
   });
 
   it('should return a token correctly', async () => {
     Sinon.stub(User, 'findOne').resolves(mock.userInDb as User);
+    Sinon.stub(bcrypt, 'compareSync').callsFake(() => true);
 
     const result = await LoginService.login(mock.userInfosLogin);
 
-    const payload = await AContractJWT.verifyToken(result);
+    const payload = await Jwt.verifyToken(result);
 
     expect(payload).to.have.property('username').and.to.be.a('string');
     expect(payload).to.have.property('username').and.to.be.equal('User');
@@ -46,6 +48,7 @@ describe('Test the service Login', () => {
 
   it('should return a error if the password is incorrect', async () => {
     Sinon.stub(LoginService, 'findOne').resolves(mock.userInDb as User);
+    Sinon.stub(bcrypt, 'compareSync').callsFake(() => false);
     try {
       await LoginService.login(mock.userInfosLoginInvalidPassword);
     } catch (error) {

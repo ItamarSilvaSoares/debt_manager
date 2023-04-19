@@ -11,14 +11,19 @@ const userInfosLogin = {
   password: 'password',
 };
 
-export const userInfosLoginInvalidEmail = {
+const userInfosLoginPasswordIncorrect = {
+  email: 'user@user.com',
+  password: '123456789',
+};
+
+const userInfosLoginInvalidEmail = {
   email: 'XXXXXXXXXXXXX',
-  password: 'XXXXXXXXXXXXX',
+  password: 'password',
 };
 
 const userInfosLoginInvalidPassword = {
   email: 'user@user.com',
-  password: 'XXXXXXXXXXXXX',
+  password: 'XXX',
 };
 
 export default {
@@ -26,4 +31,5 @@ export default {
   userInfosLoginInvalidEmail,
   userInfosLogin,
   userInDb,
+  userInfosLoginPasswordIncorrect,
 };

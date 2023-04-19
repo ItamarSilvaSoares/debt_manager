@@ -17,7 +17,7 @@ import {jwt} from '../Environments/dotenv';
  * @param jwtConfig
  * @link https://www.npmjs.com/package/jsonwebtoken
  */
-class AContractJWT {
+class Jwt {
   private secret: Secret;
   private jwtConfig: SignOptions;
 
@@ -62,4 +62,4 @@ class AContractJWT {
   }
 }
 
-export default new AContractJWT();
+export default new Jwt();

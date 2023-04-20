@@ -72,11 +72,7 @@
         ],
         "description": "Endpoint para atualizar um usuário.",
         "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
+        "responses": {}
       }
     },
     "/login": {

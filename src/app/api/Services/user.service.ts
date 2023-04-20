@@ -1,9 +1,9 @@
 import {ModelStatic} from 'sequelize';
 import User from '../Database/Models/User';
-import ICreateUser from '../Interfaces/ICreate/ICreateUser';
+import ICreateUser, {IUpdateUser} from '../Interfaces/ICreate/ICreateUser';
 import Bcryptjs from '../helpers/Bcryptjs';
 import CustomError from '../Errors/CustomError';
-import {ErrosUserMensagens} from '../Utils/Constants';
+import {ErrosUserMensagens, userMessages} from '../Utils/Constants';
 import {StatusCodes} from 'http-status-codes';
 import IServiceUser from '../Interfaces/IService/IServiceUser';
 
@@ -44,13 +44,13 @@ class UserService implements IServiceUser<User> {
     return this.findUnique(newUser.email, 'email');
   }
 
-  async update(
-    updateUser: Partial<Omit<ICreateUser, 'id'>>,
-    userId: number
-  ): Promise<User | null> {
-    if ('email' in updateUser) {
-      const user = await this.findUnique(userId, 'email');
-      if (user) {
+  async update(updateUser: IUpdateUser): Promise<User | null> {
+    const {user} = updateUser;
+    delete updateUser.user;
+
+    if ('email' in updateUser && user) {
+      const userInDb = await this.findUnique(user.id, 'email');
+      if (userInDb) {
         throw new CustomError(
           StatusCodes.CONFLICT,
           ErrosUserMensagens.conflictEmail,
@@ -64,15 +64,22 @@ class UserService implements IServiceUser<User> {
       updateUser = {...updateUser, password};
     }
 
-    const a = await this.model.update({...updateUser}, {where: {id: userId}});
+    if (user) {
+      await this.model.update({...updateUser}, {where: {id: user.id}});
 
-    console.log(a);
+      return this.findUnique(user.id, 'id');
+    }
 
-    return this.findUnique(userId, 'id');
+    return null;
   }
 
-  async delete(id: number): Promise<void> {
-    await this.model.destroy({where: {id}});
+  async delete(userInfo: IUpdateUser): Promise<string | null> {
+    const {user} = userInfo;
+    if (user) {
+      await this.model.destroy({where: {id: user.id}});
+      return userMessages.deleteUser;
+    }
+    return null;
   }
 }
 

@@ -1,5 +1,5 @@
 import {NextFunction, Request, Response} from 'express';
-import {loginSchema, userSchema} from '../helpers/ZodSchemas';
+import {loginSchema, userSchema, userUpdateSchema} from '../helpers/ZodSchemas';
 
 export default class BodyValidationsClass {
   static CreateRequestUserBody(
@@ -17,6 +17,15 @@ export default class BodyValidationsClass {
     next: NextFunction
   ): void {
     loginSchema.parse(req.body);
+    next();
+  }
+
+  static UpdateRequestUserBody(
+    req: Request,
+    _res: Response,
+    next: NextFunction
+  ): void {
+    userUpdateSchema.parse(req.body);
     next();
   }
 }

@@ -10,6 +10,8 @@ import mockUser from '../../Mocks/user.mock';
 import mockLogin from '../../Mocks/login.mock';
 import UserService from '../../../app/api/Services/user.service';
 import Bcryptjs from '../../../app/api/helpers/Bcryptjs';
+import {userMessages} from '../../../app/api/Utils/Constants';
+import {IUpdateUser} from '../../../app/api/Interfaces/ICreate/ICreateUser';
 
 describe('Test User service', () => {
   afterEach(() => {
@@ -43,18 +45,24 @@ describe('Test User service', () => {
     }
   });
 
-  it('should call delete method', async () => {
-    const spy = Sinon.spy(User, 'destroy');
-    await UserService.delete(1);
+  it('should call delete method and return a message', async () => {
+    Sinon.stub(User, 'destroy').resolves();
+    const result = await UserService.delete(mockUser.deleteUser as IUpdateUser);
 
-    expect(spy.calledOnce).to.be.true;
+    expect(result).to.be.equal(userMessages.deleteUser);
+  });
+
+  it('should return null when try delete a user without authorized', async () => {
+    const result = await UserService.delete({});
+
+    expect(result).to.be.null;
   });
 
   it('should return a error when try update a user with email  already registered', async () => {
     Sinon.stub(User, 'findOne').resolves(mockLogin.userInDb as User);
 
     try {
-      await UserService.update(mockUser.userUpdateEmail, 1);
+      await UserService.update(mockUser.userUpdateEmail as IUpdateUser);
     } catch (error) {
       expect(error.message).to.be.equal('Invalid Email');
 
@@ -69,11 +77,18 @@ describe('Test User service', () => {
     const spy = Sinon.spy(Bcryptjs, 'getHash');
 
     const result = await UserService.update(
-      mockUser.userUpdatePasswordAndCell,
-      1
+      mockUser.userUpdatePasswordAndCell as IUpdateUser
     );
 
     expect(spy.calledOnce).to.be.true;
     expect(result).to.deep.equal(mockUser.userUpdateReturn);
+  });
+
+  it('should return null when try update a user without authorized', async () => {
+    const result = await UserService.update(
+      mockUser.userUpdateCellNotAllowed as IUpdateUser
+    );
+
+    expect(result).to.be.null;
   });
 });

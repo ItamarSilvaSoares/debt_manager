@@ -10,7 +10,22 @@ const invalidUser = {message: 'Email or password invalid'};
 
 const emailAlreadyExists = {message: 'User already registered'};
 
+const emailAlreadyExistsInDb = {message: 'Invalid Email'};
+
+const nothingToUpdate = {message: 'Nothing to update'};
+
+const invalidToken = {message: 'Token must be a valid token'};
+
+const tokenMiss = {message: 'Token Not Found'};
+
+const userDeleted = {message: 'User deleted successfully'};
+
 export default {
+  userDeleted,
+  tokenMiss,
+  invalidToken,
+  nothingToUpdate,
+  emailAlreadyExistsInDb,
   invalidCell,
   invalidUsername,
   invalidEmail,

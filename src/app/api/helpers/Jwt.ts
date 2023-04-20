@@ -55,9 +55,14 @@ class Jwt {
       );
     try {
       const payload = verify(token, this.secret, this.jwtConfig);
+
       return payload as JwtPayload;
     } catch (error) {
-      throw new JsonWebTokenError('Token must be a valid token');
+      throw new CustomError(
+        StatusCodes.UNAUTHORIZED,
+        ErrosJwtMensagens.TokenInvalid,
+        'TokenInvalid'
+      );
     }
   }
 }

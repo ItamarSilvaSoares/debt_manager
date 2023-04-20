@@ -8,6 +8,13 @@ export const userSchema = z.object({
   password: z.string().min(6, {message: zod.min}),
 });
 
+export const userUpdateSchema = z.object({
+  username: z.string().min(3).optional(),
+  email: z.string().email({message: zod.email}).optional(),
+  cell: z.string().min(11).optional(),
+  password: z.string().min(6, {message: zod.min}).optional(),
+});
+
 export const loginSchema = z.object({
   email: z.string().email({message: zod.email}),
   password: z.string().min(6, {message: zod.min}),

@@ -16,10 +16,15 @@ class UserController {
     return res.status(StatusCodes.CREATED).json(result);
   }
 
-  // async update(req: Request, res: Response): Promise<Response> {
-  //   const result = await this.service.update(req.body);
-  //   return res.status(StatusCodes.OK).json(result);
-  // }
+  async update(req: Request, res: Response): Promise<Response> {
+    const result = await this.service.update(req.body);
+    return res.status(StatusCodes.OK).json(result);
+  }
+
+  async delete(req: Request, res: Response): Promise<Response> {
+    const result = await this.service.delete(req.body);
+    return res.status(StatusCodes.OK).json({message: result});
+  }
 }
 
 export default new UserController(userService);

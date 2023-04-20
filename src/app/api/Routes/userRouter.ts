@@ -1,6 +1,7 @@
 import express from 'express';
 import UserController from '../Controllers/user.controller';
 import validations from '../Middlewares/body.validations';
+import jwtValidation from '../Middlewares/jwt.validation';
 
 const router = express.Router();
 
@@ -21,11 +22,23 @@ router.post('/user', validations.CreateRequestUserBody, (req, res) =>
 
   UserController.create(req, res)
 );
-router.patch('/user', validations.CreateRequestUserBody, (_req, res) =>
-  // #swagger.tags = ['User']
-  // #swagger.description = 'Endpoint para atualizar um usuário.'
 
-  res.status(200).json({message: 'OK'})
+router.patch(
+  '/user',
+  validations.UpdateRequestUserBody,
+  jwtValidation.validate,
+  (_req, res) =>
+    // #swagger.tags = ['User']
+    // #swagger.description = 'Endpoint para atualizar um usuário.'
+
+    UserController.update(_req, res)
+);
+
+router.delete('/user', jwtValidation.validate, (_req, res) =>
+  // #swagger.tags = ['User']
+  // #swagger.description = 'Endpoint para deletar um usuário.'
+
+  UserController.delete(_req, res)
 );
 
 export default router;

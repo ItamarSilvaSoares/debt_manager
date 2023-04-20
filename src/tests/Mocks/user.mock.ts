@@ -44,9 +44,20 @@ const userUpdateEmail = {
   email: 'user@user.com',
 };
 
+const userUpdateEmailInvalid = {
+  email: 'user@user',
+};
+
 const userUpdatePasswordAndCell = {
   password: 'XXXXXXXX',
-  cell: '9999999999',
+  cell: '99999999999',
+  user: {
+    id: 1,
+  },
+};
+
+const userUpdateCellNotAllowed = {
+  cell: '99999999999',
 };
 
 const userUpdateReturn = {
@@ -56,7 +67,15 @@ const userUpdateReturn = {
   cell: '9999999999',
 };
 
+const deleteUser = {
+  user: {
+    id: 1,
+  },
+};
+
 export default {
+  deleteUser,
+  userUpdateCellNotAllowed,
   userUpdateReturn,
   newUserInvalidPassword,
   newUser,
@@ -66,4 +85,5 @@ export default {
   newUserInvalidEmail,
   userUpdateEmail,
   findOneReturn,
+  userUpdateEmailInvalid,
 };

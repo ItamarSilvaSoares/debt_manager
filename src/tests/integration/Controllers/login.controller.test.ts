@@ -6,7 +6,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
 import User from '../../../app/api/Database/Models/User';
-import app from '../../../app/App';
+import {app} from '../../../app/App';
 
 import mocksLogin from '../../Mocks/login.mock';
 import mocksMessages from '../../Mocks/error.message.mock';

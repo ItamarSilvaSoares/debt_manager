@@ -1,3 +1,5 @@
+import IJwt from '../IJwt';
+
 /**
  * Interface responsável por definir um padrão para o usuário
  * @example
@@ -18,4 +20,8 @@ export default interface ICreateUser {
   email: string;
   cell: string;
   password: string;
+}
+
+export interface IUpdateUser extends Partial<Omit<ICreateUser, 'id'>> {
+  user?: IJwt;
 }

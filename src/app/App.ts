@@ -35,6 +35,14 @@ class App {
   private initRoutes(): void {
     this.app.use(routers);
   }
+
+  public start(PORT: string | number): void {
+    this.app.listen(PORT, () => console.log(`Running on port ${PORT}`));
+  }
 }
 
-export default new App().app;
+const myApp = new App();
+
+export default myApp;
+
+export const {app} = myApp;

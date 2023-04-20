@@ -1,4 +1,4 @@
-import ICreateUser from '../ICreate/ICreateUser';
+import ICreateUser, {IUpdateUser} from '../ICreate/ICreateUser';
 
 /**
  * Interface responsável por regras de serviços User
@@ -15,6 +15,7 @@ export default interface IServiceUser<M> {
         username: 'user_one';
         email: 'user@user';
         cell: 99999999999;
+        password: 'XXXXXX';
       }
    *  @returns Novo usuário criado
    */
@@ -27,21 +28,25 @@ export default interface IServiceUser<M> {
    * @param updateUser - deve conter informação novas para ser atualizado
    * @example
       {
-        id: 1;
         username: 'user_one';
         email: 'user@user';
         cell: 00000000000;
+        password: 'XXXXXX';
+        user: payload do jwt
       }
    */
-  update(
-    updateUser: Partial<Omit<ICreateUser, 'id'>>,
-    userId: number
-  ): Promise<M | null>;
+  update(updateUser: IUpdateUser): Promise<M | null>;
 
   /**
    * Implemente esse método para deletar um
    * usuário
-   * @param id - Id do usuário
+   * @param userInfo - deve conter informação novas para ser atualizado
+   * @returns Deletado com sucesso ou null se não tiver autenticado
+   *
+   * @example
+      {
+        user: payload do jwt
+      }
    */
-  delete(id: number): Promise<void>;
+  delete(userInfo: IUpdateUser): Promise<string | null>;
 }

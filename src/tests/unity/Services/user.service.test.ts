@@ -13,7 +13,7 @@ import Bcryptjs from '../../../app/api/helpers/Bcryptjs';
 import {userMessages} from '../../../app/api/Utils/Constants';
 import {IUpdateUser} from '../../../app/api/Interfaces/ICreate/ICreateUser';
 
-describe('Test User service', () => {
+describe('Unit: User service', () => {
   afterEach(() => {
     Sinon.restore();
   });

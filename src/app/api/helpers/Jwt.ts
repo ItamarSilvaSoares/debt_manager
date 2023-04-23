@@ -1,11 +1,4 @@
-import {
-  JsonWebTokenError,
-  JwtPayload,
-  Secret,
-  sign,
-  SignOptions,
-  verify,
-} from 'jsonwebtoken';
+import {JwtPayload, Secret, sign, SignOptions, verify} from 'jsonwebtoken';
 import {StatusCodes} from 'http-status-codes';
 import CustomError from '../Errors/CustomError';
 import {ErrosJwtMensagens} from '../Utils/Constants';
@@ -49,7 +42,7 @@ class Jwt {
   async verifyToken(token: string | undefined): Promise<JwtPayload> {
     if (!token)
       throw new CustomError(
-        StatusCodes.UNAUTHORIZED,
+        StatusCodes.PROXY_AUTHENTICATION_REQUIRED,
         ErrosJwtMensagens.TokenNotFound,
         'TokenNotFoundError'
       );

@@ -15,7 +15,7 @@ router.post('/login', validations.LoginRequestUserBody, (req, res) =>
     schema: { $ref: "#/definitions/LoginUser" }
   } */
 
-  // #swagger.responses[200] = { schema: { $ref: "#/definitions/Token"}, description: 'User Create' }
+  // #swagger.responses[200] = { schema: { $ref: "#/definitions/Token"}, description: 'Successful Login' }
   // #swagger.responses[401] = { schema: { $ref: "#/definitions/Unauthorized"}, description: 'Unauthorized' }
   // #swagger.responses[400] = { schema: { $ref: "#/definitions/BadRequest"}, description: 'Bad Request' }
   loginController.login(req, res)

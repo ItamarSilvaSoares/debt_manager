@@ -21,6 +21,14 @@
     "http",
     "https"
   ],
+  "securityDefinitions": {
+    "apiKeyAuth": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "authorization",
+      "description": "authorization jwt"
+    }
+  },
   "consumes": [
     "application/json"
   ],
@@ -71,8 +79,80 @@
           "User"
         ],
         "description": "Endpoint para atualizar um usuário.",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Informações do usuário.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateUser"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/UserUpdate"
+            },
+            "description": "User Updated"
+          },
+          "401": {
+            "schema": {
+              "$ref": "#/definitions/TokenInvalid"
+            },
+            "description": "Invalid Token"
+          },
+          "407": {
+            "schema": {
+              "$ref": "#/definitions/TokenNotFound"
+            },
+            "description": "Token Not Found"
+          },
+          "409": {
+            "schema": {
+              "$ref": "#/definitions/ConflictEmail"
+            },
+            "description": "Email Conflict"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "User"
+        ],
+        "description": "Endpoint para deletar um usuário.",
         "parameters": [],
-        "responses": {}
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/deleteUser"
+            },
+            "description": "User Deleted"
+          },
+          "401": {
+            "schema": {
+              "$ref": "#/definitions/TokenInvalid"
+            },
+            "description": "Invalid Token"
+          },
+          "407": {
+            "schema": {
+              "$ref": "#/definitions/TokenNotFound"
+            },
+            "description": "Token Not Found"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
       }
     },
     "/login": {
@@ -133,15 +213,6 @@
         "password"
       ]
     },
-    "Token": {
-      "type": "object",
-      "properties": {
-        "token": {
-          "type": "string",
-          "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJKb2huIERvZSIsImVtYWlsIjoiSm9obiBEb2Ui"
-        }
-      }
-    },
     "User": {
       "type": "object",
       "properties": {
@@ -152,6 +223,27 @@
         "username": {
           "type": "string",
           "example": "John Doe"
+        },
+        "email": {
+          "type": "string",
+          "example": "John@email.com"
+        },
+        "cell": {
+          "type": "string",
+          "example": "18991234567"
+        }
+      }
+    },
+    "UserUpdate": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "example": 1
+        },
+        "username": {
+          "type": "string",
+          "example": "Doe John"
         },
         "email": {
           "type": "string",
@@ -190,6 +282,24 @@
         "password"
       ]
     },
+    "UpdateUser": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string",
+          "example": "Doe John"
+        }
+      }
+    },
+    "Token": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string",
+          "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJKb2huIERvZSIsImVtYWlsIjoiSm9obiBEb2Ui"
+        }
+      }
+    },
     "ConflictUser": {
       "type": "object",
       "properties": {
@@ -223,6 +333,42 @@
         "message": {
           "type": "string",
           "example": "Email or password invalid"
+        }
+      }
+    },
+    "ConflictEmail": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "example": "Invalid Email"
+        }
+      }
+    },
+    "TokenNotFound": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "example": "Token Not Found"
+        }
+      }
+    },
+    "TokenInvalid": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "example": "Token must be a valid token"
+        }
+      }
+    },
+    "deleteUser": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "example": "User deleted successfully"
         }
       }
     }

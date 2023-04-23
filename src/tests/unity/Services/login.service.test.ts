@@ -10,7 +10,7 @@ import mock from '../../Mocks/login.mock';
 import Jwt from '../../../app/api/helpers/Jwt';
 import User from '../../../app/api/Database/Models/User';
 
-describe('Test Login service', () => {
+describe('Unit: Login service', () => {
   afterEach(() => {
     Sinon.restore();
   });

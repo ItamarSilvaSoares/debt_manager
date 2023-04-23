@@ -159,9 +159,9 @@ describe('Integration: User Controller', () => {
       expect(response.body).to.have.deep.equal(mocksMessages.invalidToken);
     });
 
-    it('PATCH /user: should return status 401 if authorization header is miss', async () => {
+    it('PATCH /user: should return status 407 if authorization header is miss', async () => {
       const response = await chai.request(app).patch('/user').send({});
-      expect(response.status).to.be.equal(401);
+      expect(response.status).to.be.equal(407);
       expect(response.body).to.be.an('object');
       expect(response.body).to.have.deep.equal(mocksMessages.tokenMiss);
     });

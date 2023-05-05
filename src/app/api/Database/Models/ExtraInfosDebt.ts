@@ -3,13 +3,14 @@ import db from '.';
 
 // import OtherModel from './OtherModel';
 
-class PixTransfer extends Model {
+class ExtraInfosDebt extends Model {
   declare readonly id: number;
   declare debtId: number;
   declare to: string;
+  declare scannableLines: string;
 }
 
-PixTransfer.init(
+ExtraInfosDebt.init(
   {
     id: {
       type: INTEGER,
@@ -24,13 +25,15 @@ PixTransfer.init(
     },
     to: {
       type: STRING,
-      allowNull: false,
+    },
+    scannableLines: {
+      type: STRING,
     },
   },
   {
     underscored: true,
     sequelize: db,
-    modelName: 'PixTransfer',
+    modelName: 'ExtraInfosDebt',
     timestamps: false,
   }
 );
@@ -46,4 +49,4 @@ PixTransfer.init(
 // Debt.hasMany(OtherModel, { foreignKey: 'campoC', as: 'campoEstrangeiroC' });
 // Debt.hasMany(OtherModel, { foreignKey: 'campoD', as: 'campoEstrangeiroD' });
 
-export default PixTransfer;
+export default ExtraInfosDebt;

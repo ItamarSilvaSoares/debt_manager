@@ -1,7 +1,6 @@
 import {INTEGER, Model, STRING, DECIMAL, DATE, BOOLEAN} from 'sequelize';
-import PixTransfer from './PixTransfer';
 import DebtType from './DebtType';
-import Billet from './Billet';
+import DebtsInfo from './ExtraInfosDebt';
 import db from '.';
 
 class Debt extends Model {
@@ -58,9 +57,9 @@ Debt.init(
 );
 
 DebtType.belongsTo(Debt, {foreignKey: 'type', as: 'typeDebt'});
+DebtsInfo.belongsTo(Debt, {foreignKey: 'id', as: 'Debt'});
 
-Debt.hasMany(DebtType, {foreignKey: 'id', as: 'debt'});
-Debt.hasMany(PixTransfer, {foreignKey: 'id', as: 'PixTransfer'});
-Debt.hasMany(Billet, {foreignKey: 'id', as: 'Billet'});
+Debt.hasOne(DebtType, {foreignKey: 'id', as: 'debt'});
+Debt.hasOne(DebtsInfo, {foreignKey: 'id', as: 'DebtsInfo'});
 
 export default Debt;

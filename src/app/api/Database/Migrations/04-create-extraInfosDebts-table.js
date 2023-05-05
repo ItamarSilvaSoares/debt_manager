@@ -1,7 +1,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('pix_transfers', {
+    await queryInterface.createTable('extra_infos_debt', {
       id: {
         primaryKey: true,
         type: Sequelize.INTEGER,
@@ -13,12 +13,15 @@ module.exports = {
         field: 'debt_id',
       },
       to: {
-        allowNull: false,
         type: Sequelize.STRING,
+      },
+      scannableLines: {
+        type: Sequelize.STRING,
+        field: 'scannable_lines',
       },
     });
   },
   down: async queryInterface => {
-    await queryInterface.dropTable('pix_transfers');
+    await queryInterface.dropTable('extra_infos_debt');
   },
 };

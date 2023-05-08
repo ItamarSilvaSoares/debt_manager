@@ -8,4 +8,4 @@ RUN ["npm", "i"]
 
 COPY . .
 
-ENTRYPOINT  [ "npm", "start" ]
+ENTRYPOINT  [ "npm", "run", "dev" ]

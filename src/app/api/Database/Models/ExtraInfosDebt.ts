@@ -33,8 +33,9 @@ ExtraInfosDebt.init(
   {
     underscored: true,
     sequelize: db,
-    modelName: 'ExtraInfosDebt',
+    modelName: 'extra_infos_debt',
     timestamps: false,
+    freezeTableName: true,
   }
 );
 

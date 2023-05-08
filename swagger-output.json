@@ -26,7 +26,7 @@
       "type": "apiKey",
       "in": "header",
       "name": "authorization",
-      "description": "authorization jwt"
+      "description": "Do login to get the token and put it below "
     }
   },
   "consumes": [
@@ -84,7 +84,7 @@
             "name": "obj",
             "in": "body",
             "description": "Informações do usuário.",
-            "required": true,
+            "required": false,
             "schema": {
               "$ref": "#/definitions/UpdateUser"
             }
@@ -177,7 +177,7 @@
             "schema": {
               "$ref": "#/definitions/Token"
             },
-            "description": "User Create"
+            "description": "Successful Login"
           },
           "400": {
             "schema": {

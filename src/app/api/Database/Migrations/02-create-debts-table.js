@@ -33,7 +33,7 @@ module.exports = {
       payed: {
         allowNull: false,
         type: Sequelize.BOOLEAN,
-        defaultValue: false,
+        defaultValue: 0,
       },
     });
   },

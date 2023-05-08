@@ -15,7 +15,7 @@ services:
     ports:
       - 3030:3001
     environment:
-      - APP_PORT=3030
+      - APP_PORT=3001
       - JWT_SECRET=jwt_secret
       - DB_PASS=password
       - DB_NAME=debt_db

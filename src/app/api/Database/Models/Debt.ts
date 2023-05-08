@@ -45,7 +45,7 @@ Debt.init(
     payed: {
       type: BOOLEAN,
       allowNull: false,
-      defaultValue: false,
+      defaultValue: 0,
     },
   },
   {
@@ -57,9 +57,9 @@ Debt.init(
 );
 
 DebtType.belongsTo(Debt, {foreignKey: 'type', as: 'typeDebt'});
-DebtsInfo.belongsTo(Debt, {foreignKey: 'id', as: 'Debt'});
+DebtsInfo.belongsTo(Debt, {foreignKey: 'id', as: 'infoDebt'});
 
 Debt.hasOne(DebtType, {foreignKey: 'id', as: 'debt'});
-Debt.hasOne(DebtsInfo, {foreignKey: 'id', as: 'DebtsInfo'});
+Debt.hasOne(DebtsInfo, {foreignKey: 'id', as: 'debtsInfo'});
 
 export default Debt;

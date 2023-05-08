@@ -4,20 +4,20 @@ module.exports = {
       'extra_infos_debt',
       [
         {
-          debtId: 1,
+          debt_id: 1,
           to: 'companhia de síndicos',
         },
         {
-          debtId: 2,
+          debt_id: 2,
           to: 'Sabesp',
         },
         {
-          debtId: 3,
+          debt_id: 3,
           to: 'Loja da Loja',
-          scannableLines: '13245678912345679813456798',
+          scannable_lines: '13245678912345679813456798',
         },
         {
-          debtId: 4,
+          debt_id: 4,
           to: 'pizzaria do pizzaiolo',
         },
       ],

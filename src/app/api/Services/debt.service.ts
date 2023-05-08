@@ -3,12 +3,23 @@ import {StatusCodes} from 'http-status-codes';
 import CustomError from '../Errors/CustomError';
 
 import Debt from '../Database/Models/Debt';
+import ExtraInfosDebt from '../Database/Models/ExtraInfosDebt';
 
 class DebtService {
   constructor(private model: ModelStatic<Debt>) {}
 
   public async getAll() {
-    const result = await this.model.findAll();
+    console.log('esquilo');
+
+    const result = await this.model.findAll({
+      include: [
+        {
+          model: ExtraInfosDebt,
+          as: 'debtsInfo',
+          attributes: {exclude: ['id']},
+        },
+      ],
+    });
     return result;
   }
 
@@ -39,3 +50,6 @@ class DebtService {
   //   }
   // }
 }
+
+export default new DebtService(Debt);
+export {DebtService};

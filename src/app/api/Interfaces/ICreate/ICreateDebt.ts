@@ -1,3 +1,5 @@
+import IJwt from '../IJwt';
+
 /**
  * Interface responsável por definir um padrão para criar um novo debito
  * @example
@@ -9,6 +11,7 @@
         description: String;
         dueDate: 2023-02-23;
         payed: True;
+        user: jwt payload;
       }
   @argument userId - id do usuário pertencente do debito
   @argument type - id do tipo de debito
@@ -25,4 +28,7 @@ export default interface ICreateDebt {
   description: string;
   dueDate: Date;
   payed?: boolean;
+  user?: IJwt;
 }
+
+export type IUpdateDebt = Partial<Omit<ICreateDebt, 'id'>>;

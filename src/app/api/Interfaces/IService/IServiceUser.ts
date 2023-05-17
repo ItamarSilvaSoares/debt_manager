@@ -8,16 +8,21 @@ export default interface IServiceUser<M> {
   /**
    * Implemente esse método para criar um novo
    * usuário, seu retorno deve ser como exemplo abaixo
-   * @param newUser - deve conter dados de criação
+   * @param newUser - deve conter dados de criação de um novo usuário
    * @example
       {
-        id: 1;
         username: 'user_one';
         email: 'user@user';
         cell: 99999999999;
         password: 'XXXXXX';
       }
-   *  @returns Novo usuário criado
+   *  @returns
+      {
+        id: 1;
+        username: 'user_one';
+        email: 'user@user';
+        cell: 99999999999;
+      }
    */
   create(newUser: ICreateUser): Promise<M | null>;
 
@@ -25,14 +30,19 @@ export default interface IServiceUser<M> {
    * Implemente esse método para atualizar um
    * usuário, seu retorno deve ser como exemplo abaixo
    * @param userId - Id do usuário
-   * @param updateUser - deve conter informação novas para ser atualizado
+   * @param updateUser - deve conter as informação novas para ser atualizado
    * @example
       {
         username: 'user_one';
         email: 'user@user';
-        cell: 00000000000;
+        cell: 88888888888;
         password: 'XXXXXX';
-        user: payload do jwt
+      }
+    @returns
+    {
+        username: 'user_one';
+        email: 'user@user';
+        cell: 88888888888;
       }
    */
   update(updateUser: IUpdateUser): Promise<M | null>;
@@ -40,13 +50,14 @@ export default interface IServiceUser<M> {
   /**
    * Implemente esse método para deletar um
    * usuário
-   * @param userInfo - deve conter informação novas para ser atualizado
-   * @returns Deletado com sucesso ou null se não tiver autenticado
-   *
+   * @param userInfo - deve conter as informação referente ao usuário
    * @example
       {
         user: payload do jwt
       }
+
+   * @returns Deletado com sucesso ou null se não tiver autenticado
+   *
    */
   delete(userInfo: IUpdateUser): Promise<string | null>;
 }

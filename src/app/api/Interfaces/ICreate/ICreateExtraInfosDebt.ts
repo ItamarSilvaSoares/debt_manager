@@ -4,17 +4,18 @@
 
  * @example
       {
-        id: 1;
-        debtId: 2;
-        to: 'user_two';
-
+        id: number;
+        debtId: number;
+        to: string;
+        scannableLines: string;
       }
 
  * @augments debtId - deve conter o id do tipo correspondente a transação
  * @augments to - para quem recebeu a transação
  */
-export default interface ICreatePixTransfers {
+export default interface ICreateExtraInfosDebt {
   id?: number;
   debtId: number;
-  to: string;
+  to?: string;
+  scannableLines?: string;
 }

@@ -56,10 +56,10 @@ Debt.init(
   }
 );
 
-DebtType.belongsTo(Debt, {foreignKey: 'type', as: 'typeDebt'});
+DebtType.belongsTo(Debt, {foreignKey: 'type', as: 'debt'});
 DebtsInfo.belongsTo(Debt, {foreignKey: 'id', as: 'infoDebt'});
 
-Debt.hasOne(DebtType, {foreignKey: 'id', as: 'debt'});
+Debt.hasOne(DebtType, {foreignKey: 'id', as: 'debtType'});
 Debt.hasOne(DebtsInfo, {foreignKey: 'id', as: 'debtsInfo'});
 
 export default Debt;

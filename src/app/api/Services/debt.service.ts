@@ -4,13 +4,12 @@ import CustomError from '../Errors/CustomError';
 
 import Debt from '../Database/Models/Debt';
 import ExtraInfosDebt from '../Database/Models/ExtraInfosDebt';
+import DebtType from '../Database/Models/DebtType';
 
 class DebtService {
   constructor(private model: ModelStatic<Debt>) {}
 
   public async getAll() {
-    console.log('esquilo');
-
     const result = await this.model.findAll({
       include: [
         {
@@ -18,8 +17,14 @@ class DebtService {
           as: 'debtsInfo',
           attributes: {exclude: ['id']},
         },
+        {
+          model: DebtType,
+          as: 'debtType',
+          attributes: {exclude: ['id']},
+        },
       ],
     });
+
     return result;
   }
 
@@ -31,10 +36,10 @@ class DebtService {
   //   return result;
   // }
 
-  // public async create(data: any) {
-  //   const result = await this.model.create(data);
-  //   return result;
-  // }
+  public async create(data: any) {
+    const result = await this.model.create(data);
+    return result;
+  }
 
   // public async update(id: string, data: any) {
   //   const result = await this.model.update(data, {where: {id}});

@@ -24,7 +24,7 @@ DebtType.init(
   {
     underscored: true,
     sequelize: db,
-    modelName: 'DebtType',
+    modelName: 'debts_types',
     timestamps: false,
   }
 );

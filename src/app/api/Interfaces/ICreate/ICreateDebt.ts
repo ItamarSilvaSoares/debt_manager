@@ -1,3 +1,4 @@
+import ExtraInfosDebt from '../../Database/Models/ExtraInfosDebt';
 import IJwt from '../IJwt';
 
 /**
@@ -12,6 +13,10 @@ import IJwt from '../IJwt';
         dueDate: 2023-02-23;
         payed: True;
         user: jwt payload;
+        extraInfos?: {
+          to: string,
+          scannableLines: string
+        }
       }
   @argument userId - id do usuário pertencente do debito
   @argument type - id do tipo de debito
@@ -19,6 +24,7 @@ import IJwt from '../IJwt';
   @argument description - descrição do debito
   @argument dueDate - data de expiração do debito
   @argument payed - boolean to verificar se o debito foi pago
+  @argument user - boolean to verificar se o debito foi pago
  */
 export default interface ICreateDebt {
   id?: number;
@@ -28,7 +34,8 @@ export default interface ICreateDebt {
   description: string;
   dueDate: Date;
   payed?: boolean;
-  user?: IJwt;
+  user: IJwt;
+  extraInfos?: ExtraInfosDebt;
 }
 
 export type IUpdateDebt = Partial<Omit<ICreateDebt, 'id'>>;

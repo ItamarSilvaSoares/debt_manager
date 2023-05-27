@@ -1,4 +1,5 @@
 import ICreateDebt, {IUpdateDebt} from '../ICreate/ICreateDebt';
+import IJwt from '../IJwt';
 
 /**
  * Interface responsável por regras de serviços User
@@ -21,7 +22,7 @@ export default interface IServiceDebt<M> {
       }
    *  @returns Novo debito
    */
-  create(newDebt: ICreateDebt): Promise<M>;
+  create(newDebt: ICreateDebt): Promise<M | null>;
 
   /**
    * Implemente esse método para atualizar um
@@ -39,7 +40,7 @@ export default interface IServiceDebt<M> {
       }
     @returns Debito atualizado
    */
-  update(updateDebt: IUpdateDebt): Promise<M>;
+  update(updateDebt: IUpdateDebt, idDebt: string): Promise<M | null>;
 
   /**
    * Implemente esse método para atualizar um debito como pago
@@ -56,7 +57,7 @@ export default interface IServiceDebt<M> {
    *
    * @returns Deve retornar o debito atualizado
    */
-  payDebt(debtId: number, userInfo: IUpdateDebt): Promise<M>;
+  payDebt(debtId: string, userInfo: IJwt): Promise<M | null>;
 
   /**
    * Implemente esse método para encontrar todos os débitos do usuário
@@ -67,7 +68,7 @@ export default interface IServiceDebt<M> {
       }
     @returns Débitos do usuário
    */
-  findAll(userInfo: IUpdateDebt): Promise<M[]>;
+  findAll(userInfo: IJwt): Promise<M[]>;
 
   /**
    * Implemente esse método para encontrar todos débito pago pelo usuário
@@ -76,18 +77,7 @@ export default interface IServiceDebt<M> {
       {
         user: payload do jwt
       }
-   * @returns Débitos pago pelo usuário
+   * @returns Débitos pago ou não pago pelo usuário
    */
-  findAllPayed(userInfo: IUpdateDebt): Promise<M[]>;
-
-  /**
-   * Implemente esse método para encontrar todos débito não pago pelo usuário
-   * @param userInfo - payload do jwt
-   * @example
-      {
-        user: payload do jwt
-      }
-    @returns Débitos não pago pelo usuário
-   */
-  findAllUnPayed(userInfo: IUpdateDebt): Promise<M[]>;
+  findAllPayedUnPayed(userInfo: IJwt, status: boolean): Promise<M[]>;
 }

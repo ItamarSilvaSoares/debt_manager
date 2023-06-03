@@ -3,7 +3,7 @@ import express from 'express';
 import docRouter from './docRouter';
 import userRouter from './userRouter';
 import loginRouter from './loginRouter';
-import debtRouter from './debtRouter';
+import debitRouter from './debitRouter';
 
 const routers = express.Router();
 
@@ -13,7 +13,7 @@ routers.use(userRouter);
 
 routers.use(loginRouter);
 
-routers.use(debtRouter);
+routers.use(debitRouter);
 
 routers.use('/doc', docRouter);
 

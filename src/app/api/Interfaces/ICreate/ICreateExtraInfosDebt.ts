@@ -5,17 +5,17 @@
  * @example
       {
         id: number;
-        debtId: number;
+        debitId: number;
         to: string;
         scannableLines: string;
       }
 
- * @augments debtId - deve conter o id do tipo correspondente a transação
+ * @augments debitId - deve conter o id do tipo correspondente a transação
  * @augments to - para quem recebeu a transação
  */
-export default interface ICreateExtraInfosDebt {
+export default interface ICreateExtraInfosDebit {
   id?: number;
-  debtId: number;
+  debitId: number;
   to?: string;
   scannableLines?: string;
 }

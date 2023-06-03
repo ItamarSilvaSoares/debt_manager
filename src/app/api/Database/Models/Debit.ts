@@ -1,9 +1,9 @@
 import {INTEGER, Model, STRING, DECIMAL, DATE, BOOLEAN} from 'sequelize';
-import DebtType from './DebtType';
-import DebtsInfo from './ExtraInfosDebt';
+import DebitType from './DebitType';
+import DebtsInfo from './ExtraInfosDebit';
 import db from '.';
 
-class Debt extends Model {
+class Debit extends Model {
   declare readonly id: number;
   declare userId: number;
   declare type: number;
@@ -13,7 +13,7 @@ class Debt extends Model {
   declare payed: boolean;
 }
 
-Debt.init(
+Debit.init(
   {
     id: {
       type: INTEGER,
@@ -51,15 +51,15 @@ Debt.init(
   {
     underscored: true,
     sequelize: db,
-    modelName: 'Debt',
+    modelName: 'Debit',
     timestamps: false,
   }
 );
 
-DebtType.belongsTo(Debt, {foreignKey: 'type', as: 'debt'});
-DebtsInfo.belongsTo(Debt, {foreignKey: 'id', as: 'infoDebt'});
+DebitType.belongsTo(Debit, {foreignKey: 'type', as: 'debit'});
+DebtsInfo.belongsTo(Debit, {foreignKey: 'id', as: 'infoDebit'});
 
-Debt.hasOne(DebtType, {foreignKey: 'id', as: 'debtType'});
-Debt.hasOne(DebtsInfo, {foreignKey: 'id', as: 'debtsInfo'});
+Debit.hasOne(DebitType, {foreignKey: 'id', as: 'debitType'});
+Debit.hasOne(DebtsInfo, {foreignKey: 'id', as: 'debtsInfo'});
 
-export default Debt;
+export default Debit;

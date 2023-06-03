@@ -2,12 +2,12 @@ import {INTEGER, Model, STRING} from 'sequelize';
 import db from '.';
 // import OtherModel from './OtherModel';
 
-class DebtType extends Model {
+class DebitType extends Model {
   declare readonly id: number;
   declare type: string;
 }
 
-DebtType.init(
+DebitType.init(
   {
     id: {
       type: INTEGER,
@@ -34,10 +34,10 @@ DebtType.init(
  * Associations 1:N devem ficar em uma das instâncias de modelo
  * */
 
-// OtherModel.belongsTo(Debt, { foreignKey: 'campoA', as: 'campoEstrangeiroA' });
-// OtherModel.belongsTo(Debt, { foreignKey: 'campoB', as: 'campoEstrangeiroB' });
+// OtherModel.belongsTo(Debit, { foreignKey: 'campoA', as: 'campoEstrangeiroA' });
+// OtherModel.belongsTo(Debit, { foreignKey: 'campoB', as: 'campoEstrangeiroB' });
 
-// Debt.hasMany(OtherModel, { foreignKey: 'campoC', as: 'campoEstrangeiroC' });
-// Debt.hasMany(OtherModel, { foreignKey: 'campoD', as: 'campoEstrangeiroD' });
+// Debit.hasMany(OtherModel, { foreignKey: 'campoC', as: 'campoEstrangeiroC' });
+// Debit.hasMany(OtherModel, { foreignKey: 'campoD', as: 'campoEstrangeiroD' });
 
-export default DebtType;
+export default DebitType;

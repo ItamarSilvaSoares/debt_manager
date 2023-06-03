@@ -1,4 +1,4 @@
-export default interface IRequestDebt {
+export default interface IRequestDebit {
   type: string;
   value: number;
   description: string;

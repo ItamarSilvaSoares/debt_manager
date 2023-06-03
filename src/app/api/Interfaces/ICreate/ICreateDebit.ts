@@ -1,4 +1,4 @@
-import ExtraInfosDebt from '../../Database/Models/ExtraInfosDebt';
+import ExtraInfosDebit from '../../Database/Models/ExtraInfosDebit';
 import IJwt from '../IJwt';
 
 /**
@@ -26,7 +26,7 @@ import IJwt from '../IJwt';
   @argument payed - boolean to verificar se o debito foi pago
   @argument user - boolean to verificar se o debito foi pago
  */
-export default interface ICreateDebt {
+export default interface ICreateDebit {
   id?: number;
   userId: number;
   type: number;
@@ -35,7 +35,7 @@ export default interface ICreateDebt {
   dueDate: Date;
   payed?: boolean;
   user: IJwt;
-  extraInfos?: ExtraInfosDebt;
+  extraInfos?: ExtraInfosDebit;
 }
 
-export type IUpdateDebt = Partial<Omit<ICreateDebt, 'id'>>;
+export type IUpdateDebit = Partial<Omit<ICreateDebit, 'id'>>;

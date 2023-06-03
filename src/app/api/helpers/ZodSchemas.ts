@@ -19,3 +19,31 @@ export const loginSchema = z.object({
   email: z.string().email({message: zod.email}),
   password: z.string().min(6, {message: zod.min}),
 });
+
+export const debitCreateSchema = z.object({
+  type: z.number().min(1),
+  value: z.number().min(1),
+  description: z.string(),
+  dueDate: z.date(),
+  payed: z.boolean().optional(),
+  extraInfos: z
+    .object({
+      to: z.string().optional(),
+      scannableLines: z.string().optional(),
+    })
+    .optional(),
+});
+
+export const debitUpdateSchema = z.object({
+  type: z.number().min(1).optional(),
+  value: z.number().min(1).optional(),
+  description: z.string().optional(),
+  dueDate: z.date().optional(),
+  payed: z.boolean().optional(),
+  extraInfos: z
+    .object({
+      to: z.string().optional(),
+      scannableLines: z.string().optional(),
+    })
+    .optional(),
+});

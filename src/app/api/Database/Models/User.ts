@@ -1,6 +1,6 @@
 import {INTEGER, Model, STRING} from 'sequelize';
 import db from '.';
-import Debt from './Debt';
+import Debit from './Debit';
 
 class User extends Model {
   declare readonly id: number;
@@ -44,8 +44,8 @@ User.init(
   }
 );
 
-Debt.belongsTo(User, {foreignKey: 'id', as: 'user'});
+Debit.belongsTo(User, {foreignKey: 'id', as: 'user'});
 
-User.hasMany(Debt, {foreignKey: 'userId', as: 'debts'});
+User.hasMany(Debit, {foreignKey: 'userId', as: 'debts'});
 
 export default User;

@@ -18,7 +18,7 @@ services:
       - APP_PORT=3001
       - JWT_SECRET=jwt_secret
       - DB_PASS=password
-      - DB_NAME=debt_db
+      - DB_NAME=debit_db
       - DB_HOST=db_mysql
       - DB_PORT=3306
       - NODE_ENV=development

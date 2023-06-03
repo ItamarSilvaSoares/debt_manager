@@ -4,8 +4,8 @@ const doc = {
   
   info: {
     version: "1.0.0",
-    title: "API Debt Manger",
-    description: "Esta documentação é destinada ao projeto Debt Manger"
+    title: "API Debit Manger",
+    description: "Esta documentação é destinada ao projeto Debit Manger"
   },
   host: `localhost:${process.env.APP_PORT || 3001}`,
   basePath: "/",

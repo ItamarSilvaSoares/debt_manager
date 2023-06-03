@@ -1,15 +1,15 @@
-import ICreateDebt, {IUpdateDebt} from '../ICreate/ICreateDebt';
+import ICreateDebit, {IUpdateDebit} from '../ICreate/ICreateDebit';
 import IJwt from '../IJwt';
 
 /**
  * Interface responsável por regras de serviços User
  * @argument M modelo de saída
  */
-export default interface IServiceDebt<M> {
+export default interface IServiceDebit<M> {
   /**
    * Implemente esse método para criar um novo
    * debito, seu retorno deve ser como exemplo abaixo
-   * @param newDebt - deve conter dados de criação de um novo debito
+   * @param newDebit - deve conter dados de criação de um novo debito
    * @example
       {
         userId: number,
@@ -22,13 +22,13 @@ export default interface IServiceDebt<M> {
       }
    *  @returns Novo debito
    */
-  create(newDebt: ICreateDebt): Promise<M | null>;
+  create(newDebit: ICreateDebit): Promise<M | null>;
 
   /**
    * Implemente esse método para atualizar um
    * debito, seu retorno deve ser como exemplo abaixo
-   * @param debtId - Id do debito
-   * @param updateDebt - deve conter informação novas para ser atualizado
+   * @param debitId - Id do debito
+   * @param updateDebit - deve conter informação novas para ser atualizado
    * @example
       {
         type: number;
@@ -40,14 +40,14 @@ export default interface IServiceDebt<M> {
       }
     @returns Debito atualizado
    */
-  update(updateDebt: IUpdateDebt, idDebt: string): Promise<M | null>;
+  update(updateDebit: IUpdateDebit, idDebit: string): Promise<M | null>;
 
   /**
    * Implemente esse método para atualizar um debito como pago
-   * @param debtId - Id do debito
+   * @param debitId - Id do debito
    * @example
    * {
-   * debtId: number,
+   * debitId: number,
    * }
    * @param userInfo - payload do jwt
    * @example
@@ -57,7 +57,7 @@ export default interface IServiceDebt<M> {
    *
    * @returns Deve retornar o debito atualizado
    */
-  payDebt(debtId: string, userInfo: IJwt): Promise<M | null>;
+  payDebit(debitId: string, userInfo: IJwt): Promise<M | null>;
 
   /**
    * Implemente esse método para encontrar todos os débitos do usuário

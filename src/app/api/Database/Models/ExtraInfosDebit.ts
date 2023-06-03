@@ -3,14 +3,14 @@ import db from '.';
 
 // import OtherModel from './OtherModel';
 
-class ExtraInfosDebt extends Model {
+class ExtraInfosDebit extends Model {
   declare readonly id: number;
-  declare debtId: number;
+  declare debitId: number;
   declare to: string;
   declare scannableLines: string;
 }
 
-ExtraInfosDebt.init(
+ExtraInfosDebit.init(
   {
     id: {
       type: INTEGER,
@@ -19,7 +19,7 @@ ExtraInfosDebt.init(
       primaryKey: true,
     },
 
-    debtId: {
+    debitId: {
       type: INTEGER,
       allowNull: false,
     },
@@ -33,7 +33,7 @@ ExtraInfosDebt.init(
   {
     underscored: true,
     sequelize: db,
-    modelName: 'extra_infos_debt',
+    modelName: 'extra_infos_debit',
     timestamps: false,
     freezeTableName: true,
   }
@@ -44,10 +44,10 @@ ExtraInfosDebt.init(
  * Associations 1:N devem ficar em uma das instâncias de modelo
  * */
 
-// OtherModel.belongsTo(Debt, { foreignKey: 'campoA', as: 'campoEstrangeiroA' });
-// OtherModel.belongsTo(Debt, { foreignKey: 'campoB', as: 'campoEstrangeiroB' });
+// OtherModel.belongsTo(Debit, { foreignKey: 'campoA', as: 'campoEstrangeiroA' });
+// OtherModel.belongsTo(Debit, { foreignKey: 'campoB', as: 'campoEstrangeiroB' });
 
-// Debt.hasMany(OtherModel, { foreignKey: 'campoC', as: 'campoEstrangeiroC' });
-// Debt.hasMany(OtherModel, { foreignKey: 'campoD', as: 'campoEstrangeiroD' });
+// Debit.hasMany(OtherModel, { foreignKey: 'campoC', as: 'campoEstrangeiroC' });
+// Debit.hasMany(OtherModel, { foreignKey: 'campoD', as: 'campoEstrangeiroD' });
 
-export default ExtraInfosDebt;
+export default ExtraInfosDebit;

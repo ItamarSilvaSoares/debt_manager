@@ -32,7 +32,7 @@ export default interface ICreateDebit {
   type: number;
   value: number;
   description: string;
-  dueDate: Date;
+  dueDate: string;
   payed?: boolean;
   user: IJwt;
   extraInfos?: ExtraInfosDebit;

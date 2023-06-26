@@ -127,7 +127,6 @@
           "User"
         ],
         "description": "Endpoint para deletar um usuário.",
-        "parameters": [],
         "responses": {
           "200": {
             "schema": {

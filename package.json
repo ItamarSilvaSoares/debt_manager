@@ -1,5 +1,5 @@
 {
-  "name": "debit_manger",
+  "name": "debt_manger",
   "version": "1.0.0",
   "description": "Uma simples api de gerenciamento de dividas",
   "main": "src/app/api/server.js",

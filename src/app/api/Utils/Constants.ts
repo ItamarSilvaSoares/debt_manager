@@ -29,3 +29,14 @@ export const userMessages = {
 export const ErrosLogin = {
   erroLogin: 'Email or password invalid',
 };
+
+export const dateRegex =
+  /^(0?[1-9]|[12][0-9]|3[01])[/-](0?[1-9]|1[012])[/-]\d{4}$/;
+
+export const ErroDate = {
+  erroDate: 'Date must be DD/MM/YYYY or  DD-MM-YYYY',
+};
+
+export const CrossBar = '/';
+
+export const Hífen = '-';

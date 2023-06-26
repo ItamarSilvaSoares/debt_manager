@@ -2,12 +2,14 @@ import {ModelStatic} from 'sequelize';
 import {StatusCodes} from 'http-status-codes';
 import CustomError from '../Errors/CustomError';
 
-import Debit from '../Database/Models/Debit';
+import Debit from '../Database/Models/Debt';
 import ExtraInfosDebit from '../Database/Models/ExtraInfosDebit';
-import DebitType from '../Database/Models/DebitType';
+import DebitType from '../Database/Models/DebtType';
 import IServiceDebit from '../Interfaces/IService/IServiceDebit';
 import ICreateDebit from '../Interfaces/ICreate/ICreateDebit';
 import IJwt from '../Interfaces/IJwt';
+import {ErroDate, dateRegex, CrossBar, Hífen} from '../Utils/Constants';
+import {formatDate} from '../Utils/Functions';
 
 class DebitService implements IServiceDebit<Debit> {
   private modelExtraInfo: ModelStatic<ExtraInfosDebit> = ExtraInfosDebit;
@@ -35,9 +37,28 @@ class DebitService implements IServiceDebit<Debit> {
   }
 
   async create(newDebit: ICreateDebit): Promise<Debit | null> {
-    const {user: userInfo, extraInfos: debitInfo, ...data} = newDebit;
+    const {
+      user: userInfo,
+      extraInfos: debitInfo,
+      dueDate: dateString,
+      ...data
+    } = newDebit;
+    let date = null;
+
+    if (dateRegex.test(dateString) && dateString.includes(Hífen)) {
+      date = formatDate(Hífen, dateString);
+    } else if (dateRegex.test(dateString) && dateString.includes(CrossBar)) {
+      date = formatDate(CrossBar, dateString);
+    } else {
+      throw new CustomError(
+        StatusCodes.BAD_REQUEST,
+        ErroDate.erroDate,
+        'date invalid'
+      );
+    }
+
     const debit = await this.model.create(
-      {...data, userId: userInfo.id},
+      {...data, userId: userInfo.id, dueDate: date},
       {raw: true}
     );
     if (debitInfo) {

@@ -24,7 +24,7 @@ export const debitCreateSchema = z.object({
   type: z.number().min(1),
   value: z.number().min(1),
   description: z.string(),
-  dueDate: z.date(),
+  dueDate: z.string(),
   payed: z.boolean().optional(),
   extraInfos: z
     .object({

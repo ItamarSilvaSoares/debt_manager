@@ -1,6 +1,6 @@
 import {INTEGER, Model, STRING} from 'sequelize';
 import db from '.';
-import Debit from './Debit';
+import Debit from './Debt';
 
 class User extends Model {
   declare readonly id: number;

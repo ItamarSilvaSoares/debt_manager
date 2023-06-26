@@ -2,12 +2,12 @@ import {INTEGER, Model, STRING} from 'sequelize';
 import db from '.';
 // import OtherModel from './OtherModel';
 
-class DebitType extends Model {
+class DebtType extends Model {
   declare readonly id: number;
   declare type: string;
 }
 
-DebitType.init(
+DebtType.init(
   {
     id: {
       type: INTEGER,
@@ -40,4 +40,4 @@ DebitType.init(
 // Debit.hasMany(OtherModel, { foreignKey: 'campoC', as: 'campoEstrangeiroC' });
 // Debit.hasMany(OtherModel, { foreignKey: 'campoD', as: 'campoEstrangeiroD' });
 
-export default DebitType;
+export default DebtType;

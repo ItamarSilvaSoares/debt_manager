@@ -3,7 +3,7 @@ import {StatusCodes} from 'http-status-codes';
 import IServiceDebit from '../Interfaces/IService/IServiceDebit';
 
 import debitService from '../Services/debit.service';
-import Debit from '../Database/Models/Debit';
+import Debit from '../Database/Models/Debt';
 
 class DebitController {
   private debitService: IServiceDebit<Debit>;
